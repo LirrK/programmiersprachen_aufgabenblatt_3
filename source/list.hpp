@@ -261,9 +261,9 @@ class List {
 
   // list members
   private: 
-    std::size_t size_;
-    ListNode<T>* first_;
-    ListNode<T>* last_;
+    std::size_t size_ = 0;
+    ListNode<T>* first_ = nullptr;
+    ListNode<T>* last_ = nullptr;
 };
 
 /* ... */
