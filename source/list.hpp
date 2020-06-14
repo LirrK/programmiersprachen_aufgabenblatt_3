@@ -126,10 +126,9 @@ class List {
     using const_reference = T const&;
     using iterator        = ListIterator<T>;
 
-    // not fully implemented yet
-    // TODO: do not forget about the initialiser list! (Aufgabe 3.2)
-    /* ... */
-    List() {}
+    // Default constructor & initializer list constructor
+    List(ListNode<T>* first, ListNode<T>* last): first_(first), last_(last) {}
+    List(){}
 
     // test and implement:
     //TODO: Copy-Konstruktor using Deep-Copy semantics (Aufgabe 3.5)
@@ -243,18 +242,20 @@ class List {
       // TODO: remainder of back-method (Aufgabe 3.3)
     }
 
-    /* ... */
+    // Returns
+    //    true if empty
+    //    false if not empty
     bool empty() const {
-
-      // TODO: empty-method (Aufgabe 3.2)
-      return false;
+      if(size_ != 0){
+        return false;
+      }
+      return true;
     };
 
 
-    /* ... */
-    std::size_t size() const{
-      // TODO: size-method (Aufgabe 3.2)      
-      return 27;
+    // Returns size variable of List object
+    std::size_t size() const{ 
+      return size_;
   };
 
 
