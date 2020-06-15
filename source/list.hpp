@@ -128,10 +128,28 @@ class List {
 
     // Default constructor & initializer list constructor
     List(ListNode<T>* const& first, ListNode<T>* const& last): first_(first), last_(last) {}
-    List(){}
+    List() {}
 
-    // test and implement:
-    //TODO: Copy-Konstruktor using Deep-Copy semantics (Aufgabe 3.5)
+    /*
+    // Deep Copy Constructor
+    // Returns w/o doing anything if the original list is empty.
+    // Uses a temporary node 'tmp' to iterate over original list.
+    List(List const& originalList) {
+      if(originalList.first_ == nullptr) {
+        return;
+      }
+      ListNode<T>* tmp = originalList.first_->next;
+      first_ = push_back(*originalList.first_);
+      while(tmp->next != nullptr) {
+        push_back(*tmp->next);
+        tmp = tmp->next;
+        if(tmp->next == nullptr) {
+          last_ = tmp;
+        }
+      }
+      
+    }
+    */
 
     // test and implement:
     // TODO: Move-Konstruktor (Aufgabe 3.9)
