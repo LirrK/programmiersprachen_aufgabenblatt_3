@@ -127,7 +127,7 @@ class List {
     using iterator        = ListIterator<T>;
 
     // Default constructor & initializer list constructor
-    List(ListNode<T>* first, ListNode<T>* last): first_(first), last_(last) {}
+    List(ListNode<T>* const& first, ListNode<T>* const& last): first_(first), last_(last) {}
     List(){}
 
     // test and implement:
@@ -196,50 +196,104 @@ class List {
     //TODO: member function reverse (Aufgabe 3.7 - Teil 1)
 
 
-    /* ... */
+    // Adds a new ListNode with value = element
+    // as first node in the list.
     void push_front(T const& element) {
-      // TODO: push_front-method (Aufgabe 3.3)
+      if(first_ == nullptr) {
+        ListNode<T> *newNode = new ListNode<T>{element};
+        first_ = newNode;
+        last_ = newNode;
+        size_++;
+      }
+      else {
+        ListNode<T> *newNode = new ListNode<T>{element};
+        newNode->next = first_;
+        first_->prev = newNode;
+        first_ = newNode;
+        size_++;
+      }
     }
 
-    /* ... */
+    // Adds a new ListNode with value = element
+    // as last node in the list.
     void push_back(T const& element) {
-      // TODO: push_back-method (Aufgabe 3.3)
+      if(first_ == nullptr) {
+        ListNode<T>* newNode = new ListNode<T>{element};
+        first_ = newNode;
+        last_ = newNode;
+        size_++;
+      }
+      else {
+        ListNode<T>* newNode = new ListNode<T>{element};
+        newNode->prev = last_;
+        last_->next = newNode;
+        last_ = newNode;
+        size_++;
+      }
     }
 
-    /* ... */
+    // Removes first ListNode in the list.
+    // Former second ListNode becomes first_.
+    // If the removed ListNode was the only node,
+    // first_ and last_ will then point to nullptr.
     void pop_front() {
       if(empty()) {
         throw "List is empty";
       }
-
-      // TODO: remainder of pop_front-method (Aufgabe 3.3)
+      else if(first_ == last_) {
+        delete first_;
+        first_ = nullptr;
+        last_ = nullptr;
+        size_--;
+      }
+      else {
+        first_ = first_->next;
+        delete first_->prev;
+        first_->prev = nullptr;
+        size_--;
+      }
     }
 
-    /* ... */
+    // Removes last ListNode in the list.
+    // Former second last node becomes last_.
+    // If the removed node was the only node,
+    // first_ and last_ will then point to nullptr.
     void pop_back() {
       if(empty()) {
         throw "List is empty";
       }
-
-      // TODO: remainder of pop_back-method (Aufgabe 3.3)
+      else if(first_ == last_) {
+        delete last_;
+        first_ = nullptr;
+        last_ = nullptr;
+        size_--;
+      }
+      else {
+        last_ = last_->prev;
+        delete last_->next;
+        last_->next = nullptr;
+        size_--;
+      }
     }
 
-    /* ... */
+    // Returns value of first node in list.
     T& front() {
       if(empty()) {
         throw "List is empty";
       }
-
-      // TODO: remainder of front-method (Aufgabe 3.3)
+      else {
+        return first_->value;
+      }
     }
 
-    /* ... */
+    // Returns value of last node in list.
     T& back() {
       if(empty()) {
         throw "List is empty";
       }
-
-      // TODO: remainder of back-method (Aufgabe 3.3)
+      else {
+        return last_->value;
+      }
     }
 
     // Returns
