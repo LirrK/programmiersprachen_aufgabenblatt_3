@@ -161,10 +161,10 @@ class List {
       // make use of operator==
     }
 
-    /* ... */
+    // Destructor of the list class
     ~List() {
-      //TODO: Implement via clear-Method (Aufgabe 3.4)
-    } //can not really be tested
+      clear();
+    }
 
     /* ... */
     ListIterator<T> begin() {
@@ -180,9 +180,12 @@ class List {
       return {};
     }
 
-    /* ... */ 
-    // test and implement:
-    //TODO: clear()-Method (Aufgabe 3.4)
+    // Deletes all nodes in the list.
+    void clear() {
+      while(empty() == false) {
+        pop_back();
+      }
+    }
 
 
     /* ... */

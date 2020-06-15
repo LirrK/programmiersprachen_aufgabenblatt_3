@@ -1,0 +1,31 @@
+TEST_CASE("List is already empty", "[list_clearing]") {
+  List<int> list{};
+  list.clear();
+
+  REQUIRE(0 == get_size(list));
+  REQUIRE(nullptr == get_first_pointer(list));
+  REQUIRE(nullptr == get_last_pointer(list));
+
+}
+
+TEST_CASE("List has one element", "[list_clearing]") {
+  List<int> list{};
+  list.push_back(1);
+  list.clear();
+  
+  REQUIRE(0 == get_size(list));
+  REQUIRE(nullptr == get_first_pointer(list));
+  REQUIRE(nullptr == get_last_pointer(list));
+}
+
+TEST_CASE("List has more than one element", "[list_clearing]") {
+  List<int> list{};
+  list.push_back(1);
+  list.push_back(2);
+  list.push_back(3);
+  list.clear();
+  
+  REQUIRE(0 == get_size(list));
+  REQUIRE(nullptr == get_first_pointer(list));
+  REQUIRE(nullptr == get_last_pointer(list));
+}
