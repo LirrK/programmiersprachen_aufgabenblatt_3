@@ -134,23 +134,19 @@ class List {
     // Deep Copy Constructor
     // Returns w/o doing anything if the original list is empty.
     // Uses a temporary node 'tmp' to iterate over original list.
-    /*
     List(List const& originalList) {
       if(originalList.first_ == nullptr) {
         return;
       }
-      ListNode<T>* tmp = originalList.first_->next; //error: invalid conversion from ‘ListNode<int>*’ to ‘int’ [-fpermissive]
-      first_ = push_back(*originalList.first_);
-      while(tmp->next != nullptr) {
-        push_back(*tmp->next);
+      ListNode<T>* tmp = originalList.first_;
+      //first_ = push_back(*originalList.first_);
+      while(tmp != nullptr) {
+        push_back(tmp->value);
         tmp = tmp->next;
-        if(tmp->next == nullptr) {
-          last_ = tmp;
-        }
       }
-      
+      delete tmp;
     }
-    */
+    
 
     // test and implement:
     // TODO: Move-Konstruktor (Aufgabe 3.9)
