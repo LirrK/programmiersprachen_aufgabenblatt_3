@@ -158,9 +158,23 @@ class List {
       //not implemented yet
     }
 
-    /* ... */
-    // test and implement:
-    //TODO: (unifying) Assignment operator (Aufgabe 3.6)
+    // Own swap function for class List
+    // Uses std::swap to swap information about
+    // size aswell as pointers to first and last
+    // element with a given list.
+    void swap(List& list) {
+      std::swap(size_, list.size_);
+      std::swap(first_, list.first_);
+      std::swap(last_, list.last_);
+    }
+
+    // Unifying assignment operator
+    // ° cont& was not used because rhs is gonna
+    //   to be changed by swap.
+    List& operator=(List rhs) {
+      swap(rhs);
+      return *this;
+    }
 
     /* ... */
     // test and implement:
