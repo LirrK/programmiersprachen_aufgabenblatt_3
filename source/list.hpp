@@ -130,15 +130,16 @@ class List {
     List(ListNode<T>* const& first, ListNode<T>* const& last): first_(first), last_(last) {}
     List() {}
 
-    /*
+    
     // Deep Copy Constructor
     // Returns w/o doing anything if the original list is empty.
     // Uses a temporary node 'tmp' to iterate over original list.
+    /*
     List(List const& originalList) {
       if(originalList.first_ == nullptr) {
         return;
       }
-      ListNode<T>* tmp = originalList.first_->next;
+      ListNode<T>* tmp = originalList.first_->next; //error: invalid conversion from ‘ListNode<int>*’ to ‘int’ [-fpermissive]
       first_ = push_back(*originalList.first_);
       while(tmp->next != nullptr) {
         push_back(*tmp->next);
