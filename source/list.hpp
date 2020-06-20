@@ -220,18 +220,16 @@ class List {
       clear();
     }
 
-    /* ... */
+    // returns iterator that points to first node in the list
     ListIterator<T> begin() {
-      //TODO: begin-Method returning an Iterator to the 
-      //      first element in the List (Aufgabe 3.11)
-      return {};
+      auto begin = first_;
+      return {begin};
     }
 
-    /* ... */
+    // returns iterator that points to nullptr
     ListIterator<T> end() {
-      //TODO: end-Method returning an Iterator to element after (!) 
-      //      the last element in the List (Aufgabe 3.11)
-      return {};
+      auto end = nullptr;
+      return {end};
     }
 
     // Deletes all nodes in the list.
