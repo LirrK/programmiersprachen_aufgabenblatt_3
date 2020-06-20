@@ -225,11 +225,38 @@ class List {
 
     /* ... */
 
-    //TODO: member function reverse (Aufgabe 3.7 - Teil 1)
+    // Changes the prev and next pointers of every node so that
+    // the last element becomes first and the first element
+    // becomes last.
+    // After hours of trying on my own, this explanation helped:
+    // https://www.youtube.com/watch?v=uz6dimvl40Q
+    void reverse() {
+      if(first_ == nullptr) {
+        return;
+      }
+
+      ListNode<T>* current = first_;
+      ListNode<T>* temp = current->prev;
+
+      while(current != nullptr) {
+        // temp is needed to save current-> prev for swap
+        temp = current->prev;
+        // the node we are looking at changes prev to next
+        // and next to prev
+        current->prev = current->next;
+        current->next = temp;
+        // changing current node for the upcoming loop
+        current = current->prev;
+      }
+      // last thing: changing the pointers of the list
+      temp = last_;
+      last_ = first_;
+      first_ = temp;
+    }
 
 
     // Adds a new ListNode with value = element
-    // as first node in the list.
+    // as first node of the list.
     void push_front(T const& element) {
       if(first_ == nullptr) {
         ListNode<T> *newNode = new ListNode<T>{element};
@@ -247,7 +274,7 @@ class List {
     }
 
     // Adds a new ListNode with value = element
-    // as last node in the list.
+    // as last node of the list.
     void push_back(T const& element) {
       if(first_ == nullptr) {
         ListNode<T>* newNode = new ListNode<T>{element};
@@ -352,9 +379,16 @@ class List {
     ListNode<T>* last_ = nullptr;
 };
 
-/* ... */
-//TODO: Freie Funktion reverse 
-//(Aufgabe 3.7 - Teil 2, benutzt Member-Funktion reverse)
+// Uses the member function reverse() and the
+// deep copy constructor to return a new list, which
+// is a mirrored given list.
+template<typename T>
+List<T> reverse(List<T> const& originalList) {
+  List<T> newList = new List<T>{originalList};
+  newList.reverse();
+  return newList;
+  delete newList;
+}
 
 /* ... */
 //TODO: Freie Funktion operator+ (3.10 - Teil 2)

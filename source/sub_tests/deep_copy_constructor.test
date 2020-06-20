@@ -19,7 +19,5 @@ TEST_CASE("list1 has elements", "[deep_copy_constructor]") {
   REQUIRE(4 == get_size(list2));
   REQUIRE(get_first_pointer(list1) != get_first_pointer(list2));
   REQUIRE(get_last_pointer(list1) != get_last_pointer(list2));
-  //REQUIRE( == 1);
-  //REQUIRE( == 4);
 
 }
