@@ -176,18 +176,43 @@ class List {
       return *this;
     }
 
-    /* ... */
-    // test and implement:
-
+    // Operator that compares two lists.
+    // For equality, size (number of containing nodes)
+    // has to be equal.
+    // Further, every nodes that share the same index
+    // have to contain the same value.
     bool operator==(List const& rhs) const
     {
-      //TODO: operator== (Aufgabe 3.8)
+      // if size is not equal, no further comparing
+      // is necessary: returns false
+      if(size_ == rhs.size_) {
+        ListNode<T>* tempLhs = first_;
+        ListNode<T>* tempRhs = rhs.first_;
+        // could also be (tempRhs != nullptr), since both
+        // need to be equal or it returns false anyway
+        while(tempLhs != nullptr) {
+          if(tempLhs->value == tempRhs->value) {
+            tempLhs = tempLhs->next;
+            tempRhs = tempRhs->next;
+          }
+          else {
+            return false;
+          }
+        }
+        return true;
+      }
+      return false;
     }
 
+    // basically negates operator==
     bool operator!=(List const& rhs) const
     {
-      //TODO: operator!= (Aufgabe 3.8)
-      // make use of operator==
+      if(*this == rhs) {
+        return false;
+      }
+      else {
+        return true;
+      }
     }
 
     // Destructor of the list class
