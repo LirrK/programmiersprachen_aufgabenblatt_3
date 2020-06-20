@@ -41,8 +41,10 @@ struct ListIterator {
     if(nullptr == node) {
       throw "Iterator does not point to valid node";
     }
-    auto temp = &node->value;
-    return temp;
+    // using & to get the objects address that is pointed to by node
+    // then using ->value to access the requested value, since &node is
+    // still just an integer (address): so &node.value is NOT POSSIBLE
+    return &node->value;
   }  //call it->method() or it->member
 
 
@@ -51,10 +53,8 @@ struct ListIterator {
     if(nullptr == node) {
       throw "Iterator does not point to valid node";
     }
-
-    //TODO: Implement Postincrement-Operation for Iterator
-    //      (Aufgabe 3.12 - Teil 3)
-    
+    node = node->next;
+    return *this;
   }
 
   /* POSTINCREMENT (signature distinguishes the iterators), 
@@ -63,27 +63,28 @@ struct ListIterator {
     if(nullptr == node) {
       throw "Iterator does not point to valid node";
     }
-
-    //TODO: Implement Postincrement-Operation for Iterator
-    //      (Aufgabe 3.12 - Teil 4)
-
+    ListIterator<T> newIt = *this;
+    node = node->next;
+    return newIt;
   }
 
 
-  /* ... */
+  // returns true if lhs and rhs iterators point to THE SAME
+  // object/node
   bool operator==(ListIterator<T> const& x) const {
-    //TODO: Implement Equality-Operation for Iterator
-    //      (Aufgabe 3.12 - Teil 5)
-    // Iterators should be the same if they refer to the same node
+    if(x.node == node) {
+      return true;
+    }
     return false;
   } // call it: == it
 
-  /* ... */
+  // returns true if lhs and rhs iterators point to DIFFERENT
+  // objects/nodes
   bool operator!=(ListIterator<T> const& x) const {
-    //TODO: Implement Inequality-Operation for Iterator  
-    //      (Aufgabe 3.12 - Teil 6)
-    // Reuse operator==
-    return false;
+    if(*this == x) {
+      return false;
+    }
+    return true;
   } // call it: != it
 
   /* Advances Iterator */
