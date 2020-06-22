@@ -56,7 +56,15 @@ struct ListIterator {
     node = node->next;
     return *this;
   }
-
+/*
+  ListIterator<T>& operator--() {
+    if (nullptr == node) {
+      throw "Iterator does not point to valid node";
+    }
+    node = node->prev;
+    return *this;
+  }
+*/
   /* POSTINCREMENT (signature distinguishes the iterators), 
                     call:  it++, advances one element forward*/
   ListIterator<T> operator++(int) {
@@ -67,7 +75,6 @@ struct ListIterator {
     node = node->next;
     return newIt;
   }
-
 
   // returns true if lhs and rhs iterators point to THE SAME
   // object/node
@@ -234,12 +241,28 @@ class List {
       }
     }
 
-
-    /* ... */
+/*
+    
     //TODO: member function insert (Aufgabe 3.13)
+    ListIterator<T> insert(ListNode<T> const& newNode, ListIterator<T> const& it) {
+      if(begin() == nullptr) {
+        return;
+      }
+      else if(begin() == end()) {
+        push_front(newNode);
+      }
+      else if(it == end()) {
+        push_back(newNode);
+      }
+      else {
+        it->node->prev = newNode;
+      }
 
+      return it--
+    }
+  */
     /* ... */
-    //TODO: member function insert (Aufgabe 3.14)
+    //TODO: member function erase (Aufgabe 3.14)
 
     /* ... */
 
